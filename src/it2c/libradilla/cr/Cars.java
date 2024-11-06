@@ -115,14 +115,14 @@ public class Cars {
                     break;
 
                 case 5:
-                    System.out.println("\nReturning to Main Menu...");
+                    System.out.println("\nGoing Back to Main Menu.");
                     return;
 
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.out.println("Invalid action. Try Again.");
                     break;
             }
-            System.out.print("Do you want to continue? (yes/no): ");
+            System.out.print("Go back to Cars Menu (yes/no): ");
             response = input.next();
 
         } while (response.equalsIgnoreCase("yes"));

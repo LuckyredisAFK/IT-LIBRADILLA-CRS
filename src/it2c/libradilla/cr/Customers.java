@@ -76,7 +76,7 @@ public class Customers {
         do {
 
             System.out.println("-------------------------------------");
-            System.out.println("            Customer                 ");
+            System.out.println("            Customer's Menu          ");
             System.out.println("-------------------------------------");
             System.out.println("1. Add Customer");
             System.out.println("2. Update Customer");
@@ -109,14 +109,14 @@ public class Customers {
                     break;
 
                 case 5:
-                    System.out.println("\nReturning to Main Menu...");
+                    System.out.println("\nGoing Back to Main Menu");
                     return;
 
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.out.println("Invalid action. Try Again.");
                     break;
             }
-            System.out.print("Do you want to continue? (yes/no): ");
+            System.out.print("Go back to Customer Menu? (yes/no): ");
             response = input.next();
 
         } while (response.equalsIgnoreCase("yes"));

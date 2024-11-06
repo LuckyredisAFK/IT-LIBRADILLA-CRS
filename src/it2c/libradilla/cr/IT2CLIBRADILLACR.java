@@ -16,7 +16,7 @@ public class IT2CLIBRADILLACR {
             System.out.println("-------------------------------------");
             System.out.println("1. Customer");
             System.out.println("2. Cars");
-            System.out.println("3. Rent Car");
+            System.out.println("3. Rent a Car");
             System.out.println("4. Report");
             System.out.println("5. Exit");
 
