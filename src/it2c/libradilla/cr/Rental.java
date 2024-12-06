@@ -43,30 +43,29 @@ public class Rental {
     }
     
     private void rentalProcess() {
-        Scanner input = new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter the Car ID you want to rent: ");
-        int unum = input.nextInt();
+    System.out.print("Enter your Customer ID: ");
+    int customerId = input.nextInt();
 
-        conf.fetchCarsDetails(unum);
-        
-        System.out.print("\nWould you like to proceed to payment? (yes/no): ");
-        String response = input.next();
+    System.out.print("Enter the Car ID you want to rent: ");
+    int carId = input.nextInt();
 
-        if (response.equalsIgnoreCase("yes")) {
-            String sql = "UPDATE cars SET cr_status = 'Rented' WHERE cr_id = ?";
-            
-            conf.updateRecord(sql, unum);
-            conf.addRental(id, unum);
-            conf.payment(unum);
-        } else {
-            System.out.println("You chose not to rent this unit.");
-        }
+    conf.fetchCarsDetails(carId);
 
+    System.out.print("\nWould you like to proceed to payment? (yes/no): ");
+    String response = input.next();
+
+    if (response.equalsIgnoreCase("yes")) {
+        String sql = "UPDATE cars SET cr_status = 'Rented' WHERE cr_id = ?";
+        conf.updateRecord(sql, carId);
+
+        conf.addRental(customerId, carId);
+        conf.payment(carId);
+    } else {
+        System.out.println("You chose not to rent this unit.");
     }
-
-    }   
+    }
    
-   
-    
+}
 

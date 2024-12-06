@@ -16,7 +16,7 @@ public class Reports {
             boolean validChoice = false;
 
             System.out.println("-------------------------------------");
-            System.out.println("|           REPORTS PANEL           |");
+            System.out.println("               Reports               ");
             System.out.println("-------------------------------------");
             System.out.println("1. General Report");
             System.out.println("2. Individual Report");
@@ -32,11 +32,11 @@ public class Reports {
                     if (choice >= 1 && choice <= 3) {
                         validChoice = true;
                     } else {
-                        System.out.print("Invalid option. Please choose between 1 and 3.\n ");
+                        System.out.print("Invalid option. Please try agaim.\n");
                     }
 
                 } catch (NumberFormatException e) {
-                    System.out.print("Invalid input. Please enter a valid number between 1 and 3.\n ");
+                    System.out.print("Invalid input. Please enter a valid option.\n");
                 }
             }
 

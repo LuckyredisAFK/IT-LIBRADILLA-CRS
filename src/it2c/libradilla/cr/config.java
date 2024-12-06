@@ -269,7 +269,7 @@ public void deleteRecord(String sql, Object... values) {
     System.out.println("-------------------------------------");
 
     String query = "SELECT c.c_id AS c_id, c.c_fname AS c_fname, c.c_lname AS c_lname, "
-            + "c.c_email, c.c_phonenumber, cr.cr_id AS cr_id, cr.cr_model AS car_model, "
+            + "c.c_email, c.c_phonenumber,c.c_driverlicense, cr.cr_id AS cr_id, cr.cr_model AS car_model, "
             + "cr.cr_rentalcostperday AS cr_rentalcostperday "
             + "FROM customers c "
             + "LEFT JOIN rentals r ON c.c_id = r.c_id "
@@ -288,6 +288,7 @@ public void deleteRecord(String sql, Object... values) {
                     String lastName = rs.getString("c_lname");
                     String email = rs.getString("c_email");
                     String contact = rs.getString("c_phonenumber");
+                    String dlicense = rs.getString("c_driverlicense");
                     
                     // Car Details
                     int carId = rs.getInt("cr_id");
@@ -298,6 +299,7 @@ public void deleteRecord(String sql, Object... values) {
                     System.out.printf("\n - Last Name: %s", lastName);
                     System.out.printf("\n - Email: %s", email);
                     System.out.printf("\n - Contact: %s", contact);
+                    System.out.printf("\n - Driver License: %s", dlicense);
                     System.out.printf("\n - Car ID: %d", carId);
                     System.out.printf("\n - Car Model: %s", carModel);
                     System.out.printf("\n - Rental Cost Per Day: %s", rentalCostPerDay);
@@ -315,43 +317,37 @@ public void deleteRecord(String sql, Object... values) {
     }
 }
     
+    
     public void addRental(int customerId, int carId) {
 
-    
-    String sql = "INSERT INTO rentals (c_id, cr_id, r_start, r_returndate) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO rentals (c_id, cr_id, r_start, r_returndate) VALUES (?, ?, ?, ?)";
 
-    config conf = new config();
+        config conf = new config();
 
-    
-    LocalDate start = LocalDate.now();
-    LocalDate returnDate = start.plusYears(1);
-    
-    System.out.println("Customer ID: " + customerId);
-    System.out.println("Car ID: " + carId);
+        LocalDate start = LocalDate.now();
+        LocalDate returndate = start.plusYears(1);
 
-    try (Connection conn = connectDB();
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = connectDB();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-       
-        pstmt.setInt(1, customerId);  
-        pstmt.setInt(2, carId);  
-        pstmt.setDate(3, Date.valueOf(start));  
-        pstmt.setDate(4, Date.valueOf(returnDate));  
+            pstmt.setInt(1, customerId);
+            pstmt.setInt(2, carId);
+            pstmt.setDate(3, Date.valueOf(start));
+            pstmt.setDate(4, Date.valueOf(returndate));
 
-        
-        int rowsAffected = pstmt.executeUpdate();
-        if (rowsAffected > 0) {
-            System.out.println("Rental record added successfully.");
-        } else {
-            System.out.println("Failed to add rental record.");
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("");
+            } else {
+                System.out.println("Failed to add rental record.");
+            }
+
+        } catch (SQLException e) {
         }
 
-    } catch (SQLException e) {
-        System.out.println("Error adding rental: " + e.getMessage());
+
+    
+    
     }
-}
-    
-    
-    
     
 }

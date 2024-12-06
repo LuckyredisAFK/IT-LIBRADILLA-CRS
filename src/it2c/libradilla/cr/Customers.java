@@ -105,8 +105,11 @@ public class Customers {
         Customers cts = new Customers();
         Scanner input = new Scanner(System.in);
         String response;
+        int choice = 0;
 
         do {
+            
+             boolean validChoice = false;
 
             System.out.println("-------------------------------------");
             System.out.println("            Customer's Menu          ");
@@ -117,10 +120,25 @@ public class Customers {
             System.out.println("4. Delete Customer");
             System.out.println("5. Go back to Main Menu");
 
-            System.out.print("Enter action: ");
-            int action = input.nextInt();
+            while (!validChoice) {
+                System.out.print("Enter action: ");
+                String action = input.next().trim();
 
-            switch (action) {
+                try {
+                    choice = Integer.parseInt(action);
+
+                    if (choice >= 1 && choice <= 5) {
+                        validChoice = true;
+                    } else {
+                        System.out.print("Invalid option. Please try agaim.\n");
+                    }
+
+                } catch (NumberFormatException e) {
+                    System.out.print("Invalid input. Please enter a valid option.\n");
+                }
+            }
+
+            switch (choice) {
                 case 1:
                     cts.addCustomer();
                     break;
